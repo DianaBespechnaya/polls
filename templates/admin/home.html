@@ -1,25 +1,16 @@
-#FFE4E1
-{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">Header</a></h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Hello!</a></h1>
 
 <nav class="top-bar" data-topbar role="navigation">
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li><a>Exit</a></li>
-            <li><a>Register</a></li>
-            <li><a>Sign in</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a>Sign up</a></li>
         </ul>
 
     </section>
-
-    <ul class="title-area">
-        <li class="name">
-            <h1><a>Python</a></h1>
-        </li>
-    </ul>
 </nav>
 
 {% endblock %}
