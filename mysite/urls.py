@@ -7,7 +7,9 @@ urlpatterns = [
     url(r'^login/$', 'django.contrib.auth.views.login', {
         'template_name': 'admin\login.html'
     }, name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout',{
+        'template_name': 'admin\home.html'
+    }, name='logout'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('polls.urls')),
     ]
