@@ -7,5 +7,6 @@
     {% endif %}
     <h1>{{ post.title }}</h1>
     <p>{{ post.text|linebreaksbr }}</p>
+    <li><a href="{% url 'account' %}">My page</a></li>
 </div>
     {% endblock %}
