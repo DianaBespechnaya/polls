@@ -4,9 +4,7 @@ from django.contrib import admin
 from polls import views
 
 urlpatterns = [
-    url(r'^login/$', 'django.contrib.auth.views.login', {
-        'template_name': 'admin\login.html'
-    }, name='login'),
+    url(r'^login/$', views.my_login , name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout',{
         'template_name': 'admin\home.html'
     }, name='logout'),

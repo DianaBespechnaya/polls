@@ -9,4 +9,10 @@
     <p>{{ post.text|linebreaksbr }}</p>
     <li><a href="{% url 'account' %}">My page</a></li>
 </div>
+
+<p>
+    {% load disqus_tags %}
+    {% disqus_dev %}
+    {% disqus_show_comments %}
+</p>
     {% endblock %}
