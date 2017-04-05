@@ -7,6 +7,7 @@
         <ul class="right">
             <li><a href="{% url 'logout' %}">Logout</a></li>
             <li><a href="{% url 'post_new' %}">Add a post</a></li>
+            <li><a href="{% url 'account' user_name=user.username %}">My blog</a></li>
         </ul>
 
     </section>
@@ -23,7 +24,7 @@
     {% for post in posts %}
 <div>
     <p>published: {{ post.published_date }}</p>
-        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <h1><a href="{% url 'post_detail' pk=post.pk user_name=current_user %}">{{ post.title }}</a></h1>
     <p>{{ post.text|linebreaksbr }}</p>
 </div>
     {% endfor %}

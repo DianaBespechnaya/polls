@@ -7,12 +7,7 @@
     {% endif %}
     <h1>{{ post.title }}</h1>
     <p>{{ post.text|linebreaksbr }}</p>
-    <li><a href="{% url 'account' %}">My page</a></li>
+    <li><a href="{% url 'account' user_name=current_user %}">Back to blog</a></li>
 </div>
 
-<p>
-    {% load disqus_tags %}
-    {% disqus_dev %}
-    {% disqus_show_comments %}
-</p>
-    {% endblock %}
+{% endblock %}

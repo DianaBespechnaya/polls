@@ -8,12 +8,11 @@ from django.contrib.auth.models import User
 from django.shortcuts import render_to_response,redirect
 from django.contrib.auth import authenticate, login
 
-from django.contrib.auth.middleware import AuthenticationMiddleware
+#from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.http import  HttpRequest
 from django.template import RequestContext
 
 
-# Create your views here.
 def polls_list(request):
     return render(request, 'admin/home.html', {})
 
@@ -41,13 +40,14 @@ def my_login(request):
 
 def account(request, user_name):
     me = request.user
-    user = User.objects.get(username=user_name)
-    posts = Post.objects.filter(author = user, published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'admin/account.html', {'posts': posts})
+    current_user = User.objects.get(username=user_name)
+    posts = Post.objects.filter(author = current_user, published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'admin/account.html', {'posts': posts , 'current_user':current_user})
 
-def post_detail(request, pk):
+def post_detail(request, pk, user_name):
+    current_user = User.objects.get(username=user_name)
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'admin/post.html', {'post': post})
+    return render(request, 'admin/post.html', {'post': post , 'current_user':current_user})
 
 
 def post_new(request):
@@ -58,7 +58,7 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', pk=post.pk, user_name=request.user)
     else:
         form = PostForm()
     return render(request, 'admin/post_edit.html', {'form': form})
